@@ -1,0 +1,82 @@
+{% extends 'body.html' %} 
+{% load static %}
+
+<!-- * Librerias Extra -->
+{% block librerias_extra %}
+<link rel="stylesheet" href="{% static 'principal/css/principal.css' %}" />
+<script src="{% static 'principal/js/funciones.js' %}"></script>
+{% endblock librerias_extra %}
+
+{% block content %} 
+
+<h1>Suma Mental</h1>
+<p class="instruction">* Realiza la siguiente operacion mentalmente.</p>
+<div class="general_container">
+  
+  {% comment %} CONFIGURACION {% endcomment %}
+  <div class="configuration">
+    <div class="config-title">
+      <p>Configuración</p>
+    </div>
+    <div class="config-content">
+      <form action="." id="formConfiguration">
+        <div class="form-group">
+          <label for="id-select-rounds"># Rondas</label>
+          <select name="selectRounds" id="id-select-rounds">
+            <option value="1">1</option>
+            <option value="3" selected>3</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+          </select>
+        </div>
+
+        <div class="form-group row d-flex justify-content-around">
+          <div class="form-group">
+            <label for="id-numbers"># Números
+              <input id="id-numbers" class="form-control" name="inputNumbers" type="number" placeholder="1" min="1" max="20" value="2">
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="id-digits"># Digitos
+              <input id="id-digits" class="form-control" name="inputDigits" type="number" placeholder="1" min="1" max="10" value="1">
+            </label>
+          </div>
+        </div>
+        <div class="form-group row">
+          <button type="submit" class="btn btnCreate mx-auto">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  
+  {% comment %} Container Sums {% endcomment %}
+  <div class="container_general_sums">
+    <span class="navigate-sum"></span>
+    <button type="button" tab-index="0" class="btnStart" disabled="true">Comenzar</button>
+  
+    {% comment %} Container each sum {% endcomment %}
+    <div class="container_sum" data-id="10">
+      <div class="numeros">
+
+      </div>
+      <hr class='divisor'/>
+      <div class="answer">
+        <form action=".">
+          <input type="text" tab-index="1" placeholder="0" name="txt-answer" disabled="true"/>
+        </form>
+        {% comment %} Final Comments {% endcomment %}
+        <p class="item-invisible resultado"></p>
+        <strong class="item-invisible timer"></strong>
+        <p class="item-invisible response"></p>
+      </div>
+      <div class="container-next row">
+        <button type="Button" tab-index="2" class="btn btn-primary btnNext mx-auto" disabled="true">Siguiente</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}

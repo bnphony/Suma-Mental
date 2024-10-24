@@ -1,0 +1,158 @@
+/* Contenedor General */
+
+.general_container {
+  display: flex;
+  flex-direction: column;
+  margin-block: 20px;
+}
+
+.instruction {
+  margin-bottom: 0;
+}
+
+/* 
+* Container: CONFIGURATION
+ */
+.configuration {
+  margin-block: 10px;
+}
+
+.config-title {
+  background-color: aliceblue;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-weight: bold;
+  padding: 10px;
+}
+.config-title p {
+  margin: 0;
+}
+
+.config-content {
+  background-color: cadetblue;
+  padding-block: 10px;
+  display: flex;
+  justify-content: center;
+}
+#formConfiguration {
+  width: 80%;
+  text-align: center;
+}
+.config-content #id-select-rounds {
+  width: 100px;
+}
+.config-content .btnCreate {
+  width: 50%;
+  font-weight: bold;
+  background-color: aliceblue;
+  color: #000;
+  margin: auto 0;
+}
+
+/* Boton Comenzar */
+.btnStart {
+  background-color: greenyellow;
+  flex-basis: content;
+  border: none;
+  font-weight: bold;
+  padding: 10px;
+  margin: 10px 0;
+  transition: ease-in-out 0.1;
+}
+.btnStart:hover {
+  cursor: pointer;
+  scale: 1.2;
+}
+.btnStart:disabled {
+  cursor: not-allowed;
+}
+
+/* * Contenedor Sumas */
+
+.container_general_sums {
+  border: 1px solid black;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.navigate-sum {
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  opacity: 0.5;
+}
+
+/* 
+* Contenedor Suma 
+*/
+.container_sum {
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.container_sum .numeros {
+  text-align: center;
+}
+.container_sum p {
+  margin: 0;
+  margin-top: 5px;
+}
+
+/* Divisor */
+.divisor {
+  margin-top: 0;
+  border: none;
+  border-top: 1px solid black;
+  height: 1px;
+  width: 100px;
+}
+
+.container_sum .answer {
+  text-align: center;
+}
+
+/* INPUT response */
+input[name="txt-answer"] {
+  text-align: center;
+}
+
+/* Resultado */
+.resultado {
+  font-size: 30px;
+  font-weight: bold;
+  -webkit-text-stroke: 1px black;
+}
+.correcto::before {
+  content: "Correcto!";
+  color: greenyellow;
+}
+.incorrecto::before {
+  content: "Incorrecto!";
+  color: orangered;
+}
+
+/* NEXT */
+.container-next {
+  margin-top: 10px;
+}
+
+/* Configurar Input Number */
+/* Hide arrows in input number for Chrome, Safari, and Edge */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide arrows in input number for Firefox */
+/* input[type="number"] {
+  -moz-appearance: textfield;
+} */
+
+.item-invisible {
+  display: none;
+}
