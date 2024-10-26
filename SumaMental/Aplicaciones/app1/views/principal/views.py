@@ -29,12 +29,13 @@ class PrincipalView(TemplateView):
                 digits = request.POST["inputDigits"]
                 rounds = request.POST["selectRounds"]
                 operacion = request.POST['operaciones']
+                operacion_random = request.POST.get('chkOperacionRandom', 0)
                 modo = request.POST['modos']
                 digits_random = request.POST.get('chkDigitsRandom', 0)
                 data['modo'] = modo
                 operacionesCreadas = []
                 for i in range(int(rounds)):
-                    operacionesCreadas.append(generate_numbers(int(numbers), int(digits), operacion, digits_random))
+                    operacionesCreadas.append(generate_numbers(int(numbers), int(digits), operacion, digits_random, operacion_random))
                 data['info'] = operacionesCreadas
             else:
                 data["error"] = "Error! Incorrect option"

@@ -107,7 +107,7 @@ function showSum(data) {
   if (exercises.modo === 'completa') { // Modo Operacion Completa
     let html = "";
     $.each(operacion["numbers"], (index, item) => {
-      html += `<p>${index === 0 ? "&nbsp;&nbsp;&nbsp;" : signo}${item}</p>`;
+      html += `<p>${item > 0 ? '+ ' : '- '}${Math.abs(item)}</p>`;
     });
     $(".response").text(`${operacion["answer"]}`);
     $(".numeros").html(html);
@@ -116,14 +116,14 @@ function showSum(data) {
     $(".numeros").html('<p class="empty-p"></p>');
     setTimeout(() => {
         let i = 0;
-      $(".numeros").html(`<p>${i !== 0 ? signo : ''}${operacion["numbers"][i]}</p>`);
+      $(".numeros").html(`<p class="secuencial">${operacion["numbers"][i] > 0 ? '+ ' : '- '}${Math.abs(operacion["numbers"][i])}</p>`);
       countdown = setInterval(() => {
         i++;
-        if (i >= data.length - 1)  {
+        if (i >= operacion["numbers"].length) { 
           clearInterval(countdown);
           return;
         }
-        $(".numeros").html(`<p>${i !== 0 ? signo : ''}${operacion["numbers"][i]}</p>`);
+        $(".numeros").html(`<p class="secuencial">${operacion["numbers"][i] > 0 ? '+ ' : '- '}${Math.abs(operacion["numbers"][i])}</p>`);
       }, 1000);
     }, 1000);
     
@@ -137,7 +137,6 @@ function showSum(data) {
   * FUNCTION MAIN()
 ----------------------- */
 $(function () {
-  console.log($('input[name="operaciones"]:checked'));
 
 
   // generateData();
@@ -163,6 +162,15 @@ $(function () {
    
   });
 
+  // * Button RANDOM OPERATION
+  $('input[name="chkOperacionRandom"]').on('change', function() {
+    if (this.checked) {
+      $('label[for="idSuma"], label[for="idResta"]').css('text-decoration', 'line-through');
+    } else {
+      $('label[for="idSuma"], label[for="idResta"]').css('text-decoration', '');
+    }
+  });
+
   // * Next Button
   $(".btnNext").on("click", function() {
     if (count < exercises.items.length - 1) {
@@ -179,7 +187,6 @@ $(function () {
       $('.container_sum').attr("data-id", count);
       $(".navigate-sum").text(`${count+1}/${exercises.items.length}`);
       $('.btnStart').focus();
-      console.log(`count: ${count}, items: ${exercises.items.length}`);
       if (count === exercises.items.length - 1) {
         $(this).text('Finalizar');
         $(this).addClass('btn-danger');
@@ -204,7 +211,6 @@ $(function () {
   $("#formConfiguration").on("submit", function (e) {
     e.preventDefault();
     let parameters = new FormData(this);
-    console.log(parameters);
     parameters.append('action', "generate_sums");
     resetSum();
     generateData(parameters);
@@ -310,7 +316,7 @@ function reviewResponse(response) {
     DATOSGENERALES.push(auxData);
   }
   localStorage.setItem('resultados', JSON.stringify(DATOSGENERALES));
-  console.log(JSON.parse(localStorage.getItem('resultados')) || []);
+  // console.log(JSON.parse(localStorage.getItem('resultados')) || []);
 }
 
 function createSums() {}

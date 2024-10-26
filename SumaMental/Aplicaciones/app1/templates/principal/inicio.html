@@ -4,7 +4,7 @@
 <!-- * Librerias Extra -->
 {% block librerias_extra %}
 <link rel="stylesheet" href="{% static 'principal/css/principal.css' %}" />
-<script src="{% static 'principal/js/funciones.js' %}"></script>
+<script src="{% static 'principal/js/funciones.js' %}" type="module"></script>
 {% endblock librerias_extra %}
 
 {% block content %} 
@@ -28,6 +28,9 @@
             </label>
             <label for="idResta">
               <input id="idResta" type="radio" value="resta" name="operaciones"> Resta
+            </label>
+            <label for="id-operacion-random">
+              <input id="id-operacion-random" name="chkOperacionRandom" type="checkbox"> Aleatorio
             </label>
           </div>
           <div class="form-group">
