@@ -1,3 +1,7 @@
+/*
+  * Pagina Inicial
+*/
+
 var hours = 0, minutes = 0, seconds = 0;
 let internal;
 var statusButton = false;
@@ -6,9 +10,11 @@ var time = 0;
 var count = 0;
 let DATOSGENERALES = [];
 const USER_ANSWER = 'user_answer', TIME = 'time', RESULT = 'result';
+let countdown;
 
 var exercises = {
   items: [],
+  modo: '',
   get_sums: function() {
     let sums = [];
     $.each(this.items, function(key, item) {
@@ -70,8 +76,12 @@ function generateData(cData) {
         $(".numeros").empty();
         if (!data.hasOwnProperty("error")) {
           if (!$.isEmptyObject(data)) {
-              exercises.items = data;
-              $(".navigate-sum").text(`${count+1}/${data.length}`);
+              exercises.items = data.info;
+              exercises.modo = data.modo;
+              $('.divisor').css('display', exercises.modo === 'completa' ? 'block' : 'none');
+              $('.numeros').css('margin-bottom', exercises.modo === 'completa' ? '0px' : '10px');
+              $(".navigate-sum").text(`${count+1}/${data.info.length}`);
+              $(".modo-juego").text(`${exercises.modo === 'completa' ? 'Operacion Completa' : 'Numeros Secuenciales'}`);
           } else {
             alert("No se pudo generar la suma!");
           }
@@ -86,17 +96,40 @@ function generateData(cData) {
 
 
 
+
+
 // Show the exercise in the screen
 function showSum(data) {
   
   let operacion = data[count];
+  let signo = operacion["signo"];
   $('.container_sum').attr("data-id", count);
-  let html = "";
-  $.each(operacion["numbers"], (index, item) => {
-    html += `<p>${item}</p>`;
-  });
-  $(".response").text(`${operacion["answer"]}`);
-  $(".numeros").html(html);
+  if (exercises.modo === 'completa') { // Modo Operacion Completa
+    let html = "";
+    $.each(operacion["numbers"], (index, item) => {
+      html += `<p>${index === 0 ? "&nbsp;&nbsp;&nbsp;" : signo}${item}</p>`;
+    });
+    $(".response").text(`${operacion["answer"]}`);
+    $(".numeros").html(html);
+  } else {  // Modo Numeros Secuenciales
+    clearInterval(countdown);
+    $(".numeros").html('<p class="empty-p"></p>');
+    setTimeout(() => {
+        let i = 0;
+      $(".numeros").html(`<p>${i !== 0 ? signo : ''}${operacion["numbers"][i]}</p>`);
+      countdown = setInterval(() => {
+        i++;
+        if (i >= data.length - 1)  {
+          clearInterval(countdown);
+          return;
+        }
+        $(".numeros").html(`<p>${i !== 0 ? signo : ''}${operacion["numbers"][i]}</p>`);
+      }, 1000);
+    }, 1000);
+    
+
+    
+  }
 }
 
 
@@ -104,6 +137,9 @@ function showSum(data) {
   * FUNCTION MAIN()
 ----------------------- */
 $(function () {
+  console.log($('input[name="operaciones"]:checked'));
+
+
   // generateData();
   resetSum();
   $(".btnStart").prop('disabled', true);
@@ -168,22 +204,25 @@ $(function () {
   $("#formConfiguration").on("submit", function (e) {
     e.preventDefault();
     let parameters = new FormData(this);
+    console.log(parameters);
     parameters.append('action', "generate_sums");
     resetSum();
     generateData(parameters);
   });
 
 
+  const numbersA = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
   // * INPUT answer: Check the response
   $('input[name="txt-answer"]').on("keydown", function (event) {
     // Check if the Enter key is pressed
     let charCode = event.which ? event.which : event.keyCode;
-    if ((charCode >= 48 && charCode <= 57) ||(charCode >= 96 && charCode <= 105)) {
+    if (numbersA.includes(event.key)) {
       return true;
     }
 
-    // Backspace(8), tab(9), delete(46), left arrow(37), right arrow(39)
-    if (charCode === 8 || charCode === 46 || charCode === 37 || charCode === 39 || charCode === 9) {
+    // Backspace(8), tab(9), delete(46), left arrow(37), right arrow(39), +(61), -(173) 
+    let codes = [8, 46, 37, 39, 9, 107, 109, '+', '-'];
+    if (codes.includes(charCode) || codes.includes(event.key)) {
       return true;
     }
     if (event.key === "Enter" || event.keyCode == 13) {
@@ -193,10 +232,11 @@ $(function () {
     event.preventDefault();
   });
 
+  // * Only Numbers: input # Numbers , # Digits
   $('input[name="inputNumbers"], input[name="inputDigits"]').on("keydown", function(event) {
     // Check if the Enter key is pressed
     let charCode = event.which ? event.which : event.keyCode;
-    if ((charCode >= 48 && charCode <= 57) ||(charCode >= 96 && charCode <= 105)) {
+    if (numbersA.includes(event.key)) {
       return true;
     }
 
@@ -228,7 +268,7 @@ function resetSum() {
 }
 
 
-// Review the User Response
+// * Review the User Response
 function reviewResponse(response) {
   let idExercise = $('.container_sum').attr("data-id");
   let correctResponse = exercises.items[idExercise].answer;

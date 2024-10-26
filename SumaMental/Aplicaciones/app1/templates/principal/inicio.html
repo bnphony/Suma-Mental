@@ -10,7 +10,7 @@
 {% block content %} 
 
 <h1>Suma Mental</h1>
-<p class="instruction">* Realiza la siguiente operacion mentalmente.</p>
+<p class="instruction">* Realiza las siguientes operaciones mentalmente.</p>
 <div class="general_container">
   
   {% comment %} CONFIGURACION {% endcomment %}
@@ -21,7 +21,25 @@
     <div class="config-content">
       <form action="." id="formConfiguration">
         <div class="form-group">
-          <label for="id-select-rounds"># Rondas</label>
+          <div class="form-group">
+            <span>Operación: </span>
+            <label for="idSuma">
+              <input id="idSuma" type="radio" value="suma" name="operaciones" checked> Suma
+            </label>
+            <label for="idResta">
+              <input id="idResta" type="radio" value="resta" name="operaciones"> Resta
+            </label>
+          </div>
+          <div class="form-group">
+            <span>Modo: </span>
+            <label for="idCompleta">
+              <input id="idCompleta" type="radio" value="completa" name="modos" checked> Operación Completa
+            </label>
+            <label for="idSecuencial">
+              <input id="idSecuencial" type="radio" value="secuencial" name="modos"> Numeros Secuenciales
+            </label>
+          </div>
+          <label for="id-select-rounds"><span># Rondas</span></label>
           <select name="selectRounds" id="id-select-rounds">
             <option value="1">1</option>
             <option value="3" selected>3</option>
@@ -33,13 +51,16 @@
 
         <div class="form-group row d-flex justify-content-around">
           <div class="form-group">
-            <label for="id-numbers"># Números
+            <label for="id-numbers"><span># Números</span>
               <input id="id-numbers" class="form-control" name="inputNumbers" type="number" placeholder="1" min="1" max="20" value="2">
             </label>
           </div>
           <div class="form-group">
-            <label for="id-digits"># Digitos
+            <label for="id-digits"><span># Digitos</span>
               <input id="id-digits" class="form-control" name="inputDigits" type="number" placeholder="1" min="1" max="10" value="1">
+            </label>
+            <label for="id-digits-random">
+              <input id="id-digits-random" name="chkDigitsRandom" type="checkbox"> Aleatorio
             </label>
           </div>
         </div>
@@ -54,6 +75,7 @@
   {% comment %} Container Sums {% endcomment %}
   <div class="container_general_sums">
     <span class="navigate-sum"></span>
+    <span class="modo-juego">Modo de Juego</span>
     <button type="button" tab-index="0" class="btnStart" disabled="true">Comenzar</button>
   
     {% comment %} Container each sum {% endcomment %}

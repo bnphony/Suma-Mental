@@ -5,6 +5,7 @@
   width: 100%;
   text-align: center;
 }
+
 .container-exercises {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -58,8 +59,9 @@ p.answer {
 
 /* * CONTAINER EXERCISES RESULT */
 .exercises-result {
-  border: 5px solid black;
+  border: 5px solid rgba(0, 0, 0, 0.7);
   margin-bottom: 20px;
+  border-radius: 5px;
 }
 .exercises-result > .container-graphic {
   width: 100%;

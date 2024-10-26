@@ -1,4 +1,4 @@
-/* HEADER */
+/* *-> HEADER */
 
 .container-header {
   padding-block: 10px;
@@ -8,7 +8,11 @@ nav {
   padding-left: 20px;
 }
 
-/* FOOTER */
+nav a:hover {
+  text-decoration: none;
+}
+
+/* *-> FOOTER */
 
 footer {
   background-color: cadetblue;

@@ -38,6 +38,10 @@
   width: 80%;
   text-align: center;
 }
+#formConfiguration span {
+  font-weight: bold;
+}
+
 .config-content #id-select-rounds {
   width: 100px;
 }
@@ -155,4 +159,16 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .item-invisible {
   display: none;
+}
+
+/* Empty <p> */
+.empty-p {
+  min-height: 20px;
+}
+
+/* Checkboxs */
+input[type="checkbox"] {
+  scale: 1.5;
+  margin-left: 10px;
+  margin-right: 5px;
 }
