@@ -7,7 +7,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, ListView, TemplateView
 
-from Aplicaciones.app1.funciones import generate_numbers
+from Aplicaciones.app1.funciones import generate_numbers, generate_payment
 
 
 class PrincipalView(TemplateView):
@@ -33,10 +33,14 @@ class PrincipalView(TemplateView):
                 modo = request.POST['modos']
                 digits_random = request.POST.get('chkDigitsRandom', 0)
                 data['modo'] = modo
-                operacionesCreadas = []
-                for i in range(int(rounds)):
-                    operacionesCreadas.append(generate_numbers(int(numbers), int(digits), operacion, digits_random, operacion_random))
-                data['info'] = operacionesCreadas
+                operaciones_creadas = []
+                if modo == 'cobro':
+                    for i in range(int(rounds)):
+                        operaciones_creadas.append(generate_payment(int(digits)))
+                else:
+                    for i in range(int(rounds)):
+                        operaciones_creadas.append(generate_numbers(int(numbers), int(digits), operacion, digits_random, operacion_random))
+                data['info'] = operaciones_creadas
             else:
                 data["error"] = "Error! Incorrect option"
         except Exception as e:

@@ -177,3 +177,7 @@ input[type="checkbox"] {
   margin-left: 10px;
   margin-right: 5px;
 }
+
+input:disabled {
+  cursor: not-allowed;
+}

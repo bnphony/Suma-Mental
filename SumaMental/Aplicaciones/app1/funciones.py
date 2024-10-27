@@ -29,3 +29,43 @@ def randomDigits(max_digits: int):
     lower_bound = 10 ** (num_digits - 1)
     upper_bound = 10 ** num_digits - 1
     return lower_bound, upper_bound
+
+def generate_payment(num_digits: int):
+    DOLLARS = {'1000': 10, '500': 20, '100': 20, '50': 20, '20': 20, '10': 20, '5': 20, '1': 20 }
+    CENTS = {'50': 20, '25': 20, '10': 20, '5': 20, '1': 100}
+    data = {}
+    lower_bound = 10 ** (num_digits - 1)
+    upper_bound = 10**num_digits - 1
+    # Generate a float number [num_digits].[2 decimals] // 23.34
+    number_payment = round(random.uniform(lower_bound, upper_bound), 2)
+    # Extract int and float part
+    dollars = int(number_payment)
+    cents = round((number_payment - dollars) * 100)
+    data["total"] = number_payment
+    payment = {"DOLLARS": {}, "CENTS": {}}
+    
+    # Helper function to handle one dictionary (either DOLLARS or CENTS)
+    def calculate_payment(value, available_funds, payment_part):
+        for denom in sorted(available_funds.keys(), key=int, reverse=True):
+            denom_value = int(denom)
+            max_use = min(value // denom_value, available_funds[denom])
+            if max_use > 0:
+                payment_part[denom] = max_use
+                value -= denom_value * max_use
+                available_funds[denom] -= max_use
+            if value == 0:
+                break
+        return value
+
+    # Calculate dollar part
+    remaining_dollars = calculate_payment(dollars, DOLLARS, payment["DOLLARS"])
+    
+    # Calculate cents part
+    remaining_cents = calculate_payment(cents, CENTS, payment["CENTS"])
+
+    # Check if the exact amount could be constructed
+    if remaining_dollars > 0 or remaining_cents > 0:
+        return "Exact amount cannot be constructed with available denominations."
+    
+    data["payment"] = payment
+    return data

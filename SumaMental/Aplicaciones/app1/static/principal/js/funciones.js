@@ -1,3 +1,4 @@
+import { mainPayment } from './cambioTienda.js';
 /*
   * Pagina Inicial
 */
@@ -137,6 +138,9 @@ function showSum(data) {
   * FUNCTION MAIN()
 ----------------------- */
 $(function () {
+
+  // * MODULO: Cobro Tienda
+  mainPayment();
 
 
   // generateData();
