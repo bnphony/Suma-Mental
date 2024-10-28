@@ -181,3 +181,81 @@ input[type="checkbox"] {
 input:disabled {
   cursor: not-allowed;
 }
+
+/* ----------------------   */
+/*    ? COBRO TIENDA        */
+/* ----------------------   */
+.tablet {
+  background-color: aqua;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "client cobro" "current current";
+  grid-row-gap: 20px;
+}
+
+.tablet > div {
+  min-height: 20px;
+  padding: 10px;
+}
+
+.client-basket,
+.vuelto-basket {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 5px;
+  row-gap: 5px;
+  grid-auto-rows: min-content;
+}
+
+.client-basket {
+  grid-area: client;
+  background-color: red;
+}
+
+.vuelto-basket {
+  grid-area: cobro;
+  background-color: green;
+}
+
+/* CURRENCY OPTIONS */
+
+.current-options {
+  grid-area: current;
+  background-color: blueviolet;
+}
+.container-dollars,
+.container-cents {
+  border: 1px solid black;
+}
+
+.hr-divider {
+  margin-block: 5px;
+}
+
+.DOLLARS,
+.CENTS {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.DOLLARS {
+  background-color: greenyellow;
+}
+.CENTS {
+  background-color: brown;
+}
+
+[data-type].DOLLARS,
+[data-type].CENTS {
+  cursor: zoom-out;
+}
+
+/* Tooltip */
+.tooltip {
+  display: none;
+  background-color: #fff;
+}

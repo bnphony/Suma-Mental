@@ -1,7 +1,8 @@
-import { mainPayment } from './cambioTienda.js';
+import { mainPayment, showPayment } from './cambioTienda.js';
 /*
   * Pagina Inicial
 */
+
 
 var hours = 0, minutes = 0, seconds = 0;
 let internal;
@@ -82,7 +83,10 @@ function generateData(cData) {
               $('.divisor').css('display', exercises.modo === 'completa' ? 'block' : 'none');
               $('.numeros').css('margin-bottom', exercises.modo === 'completa' ? '0px' : '10px');
               $(".navigate-sum").text(`${count+1}/${data.info.length}`);
-              $(".modo-juego").text(`${exercises.modo === 'completa' ? 'Operacion Completa' : 'Numeros Secuenciales'}`);
+              $(".modo-juego").text(`${exercises.modo === 'completa' 
+                ? 'Operacion Completa' 
+                : exercises.modo === 'secuencial' ? 'Numeros Secuenciales' 
+                : 'Calcular Vuelto'}`);
           } else {
             alert("No se pudo generar la suma!");
           }
@@ -152,10 +156,6 @@ $(function () {
   $(".btnStart").on("click", function () {
     let self = $(this);
     // Start
-    $('input[name="txt-answer"]').prop("disabled", false)
-    .val("");
-    $('input[name="txt-answer"]').focus();
-    showSum(exercises.items);
     resetChronometer();
     updateTimer();
     $(".response").addClass("item-invisible");
@@ -163,16 +163,20 @@ $(function () {
     startChronometer();
     $(".timer").removeClass("item-invisible");
     $(this).html('Comenzar de Nuevo <i class="fas fa-redo"></i>');
+    $('input[name="txt-answer"]').prop("disabled", false).val("");
+    $('input[name="txt-answer"]').focus();
+    if (exercises.modo === 'cobro') {
+      showPayment(exercises.items, count);
+    } else {
+      showSum(exercises.items);
+    }
    
   });
 
   // * Button RANDOM OPERATION
   $('input[name="chkOperacionRandom"]').on('change', function() {
-    if (this.checked) {
-      $('label[for="idSuma"], label[for="idResta"]').css('text-decoration', 'line-through');
-    } else {
-      $('label[for="idSuma"], label[for="idResta"]').css('text-decoration', '');
-    }
+    const tachar = this.checked ? 'line-through' : '';
+    $('label[for="idSuma"], label[for="idResta"]').css('text-decoration', tachar);
   });
 
   // * Next Button
@@ -221,7 +225,7 @@ $(function () {
   });
 
 
-  const numbersA = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+  const numbersA = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'];
   // * INPUT answer: Check the response
   $('input[name="txt-answer"]').on("keydown", function (event) {
     // Check if the Enter key is pressed
@@ -283,8 +287,15 @@ function reviewResponse(response) {
   let idExercise = $('.container_sum').attr("data-id");
   let correctResponse = exercises.items[idExercise].answer;
   let auxData = exercises.items[idExercise]
+  let checkResponse;
+  if (['completa', 'secuencial'].includes(exercises.modo)) {
+    checkResponse = parseInt(response, 10) === correctResponse;
+  } else {
+    checkResponse = parseFloat(response) === correctResponse;
+    response = parseFloat(response);
+  }
   let obj =
-    parseInt(response, 10) === correctResponse
+    checkResponse
       ? {
           title: "FELICIDADES!",
           text: "Tu respuesta es Correcta!",

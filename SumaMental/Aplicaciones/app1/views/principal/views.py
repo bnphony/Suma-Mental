@@ -25,13 +25,13 @@ class PrincipalView(TemplateView):
             action = request.POST["action"]
             if action == "generate_sums":
                 data = {}
-                numbers = request.POST["inputNumbers"]
+                numbers = request.POST.get("inputNumbers", 0)
                 digits = request.POST["inputDigits"]
                 rounds = request.POST["selectRounds"]
-                operacion = request.POST['operaciones']
+                operacion = request.POST.get('operaciones', 0)
                 operacion_random = request.POST.get('chkOperacionRandom', 0)
                 modo = request.POST['modos']
-                digits_random = request.POST.get('chkDigitsRandom', 0)
+                digits_random = request.POST.get    ('chkDigitsRandom', 0)
                 data['modo'] = modo
                 operaciones_creadas = []
                 if modo == 'cobro':

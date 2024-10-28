@@ -43,6 +43,10 @@ def generate_payment(num_digits: int):
     cents = round((number_payment - dollars) * 100)
     data["total"] = number_payment
     payment = {"DOLLARS": {}, "CENTS": {}}
+    # Generate the cost to payment
+    cost = round(random.uniform(1, number_payment), 2)
+    data["cost"] = cost
+    data["answer"] = round(number_payment - cost, 2)
     
     # Helper function to handle one dictionary (either DOLLARS or CENTS)
     def calculate_payment(value, available_funds, payment_part):
