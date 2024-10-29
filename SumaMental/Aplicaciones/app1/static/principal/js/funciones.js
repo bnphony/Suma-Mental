@@ -11,9 +11,10 @@ var generateAgain = false;
 var time = 0;
 var count = 0;
 let DATOSGENERALES = [];
-const USER_ANSWER = 'user_answer', TIME = 'time', RESULT = 'result';
+const USER_ANSWER = 'user_answer', TIME = 'time', RESULT = 'result', MODO = 'modo';
 let countdown;
-
+// Allowerd Numbers for Inputs
+const numbersA = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'];
 var exercises = {
   items: [],
   modo: '',
@@ -24,6 +25,7 @@ var exercises = {
     });
     return sums;
   },
+  items_vuelto: [],
 }
 
 
@@ -57,7 +59,7 @@ function resetChronometer() {
   seconds = 0;
 }
 function updateTimer() {
-  $(".timer").text(`${hours}:${minutes}:${seconds}`);
+  $(".timer").text(`${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`);
 }
 
 // Generate all the exercises
@@ -80,6 +82,7 @@ function generateData(cData) {
           if (!$.isEmptyObject(data)) {
               exercises.items = data.info;
               exercises.modo = data.modo;
+              if (exercises.modo === 'cobro') $('.numeros').addClass('numeros-cobro');
               $('.divisor').css('display', exercises.modo === 'completa' ? 'block' : 'none');
               $('.numeros').css('margin-bottom', exercises.modo === 'completa' ? '0px' : '10px');
               $(".navigate-sum").text(`${count+1}/${data.info.length}`);
@@ -143,16 +146,16 @@ function showSum(data) {
 ----------------------- */
 $(function () {
 
-  // * MODULO: Cobro Tienda
+  // * [MODULO]: Cobro Tienda
   mainPayment();
 
-
-  // generateData();
   resetSum();
   $(".btnStart").prop('disabled', true);
+  $('input[name="txt-answer"]').addClass("item-invisible");
 
+  configurationButtons();
 
-  // * Button COMENZAR
+  // * [BUTTON]: COMENZAR
   $(".btnStart").on("click", function () {
     let self = $(this);
     // Start
@@ -168,23 +171,21 @@ $(function () {
     if (exercises.modo === 'cobro') {
       showPayment(exercises.items, count);
     } else {
+      $('input[name="txt-answer"]').removeClass("item-invisible");
       showSum(exercises.items);
     }
    
   });
 
-  // * Button RANDOM OPERATION
-  $('input[name="chkOperacionRandom"]').on('change', function() {
-    const tachar = this.checked ? 'line-through' : '';
-    $('label[for="idSuma"], label[for="idResta"]').css('text-decoration', tachar);
-  });
+  
 
-  // * Next Button
+  // * [BUTTON]: Next
   $(".btnNext").on("click", function() {
     if (count < exercises.items.length - 1) {
       resetSum();
       if(!DATOSGENERALES[count]) {
         let auxData = exercises.items[count];
+        auxData[MODO] = exercises.modo;
         auxData[USER_ANSWER] = '';
         auxData[TIME] = `${hours}:${minutes}:${seconds}`;
         auxData[RESULT] = 0;
@@ -202,6 +203,7 @@ $(function () {
     } else {
       if(!DATOSGENERALES[count]) {
         let auxData = exercises.items[count];
+        auxData[MODO] = exercises.modo;
         auxData[USER_ANSWER] = '';
         auxData[TIME] = `${hours}:${minutes}:${seconds}`;
         auxData[RESULT] = 0;
@@ -215,18 +217,8 @@ $(function () {
     }
   });
 
-  // * Button CREATE: Generate exercises
-  $("#formConfiguration").on("submit", function (e) {
-    e.preventDefault();
-    let parameters = new FormData(this);
-    parameters.append('action', "generate_sums");
-    resetSum();
-    generateData(parameters);
-  });
-
-
-  const numbersA = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'];
-  // * INPUT answer: Check the response
+  
+  // * [INPUT]: Answer -> Check the response
   $('input[name="txt-answer"]').on("keydown", function (event) {
     // Check if the Enter key is pressed
     let charCode = event.which ? event.which : event.keyCode;
@@ -246,7 +238,33 @@ $(function () {
     event.preventDefault();
   });
 
-  // * Only Numbers: input # Numbers , # Digits
+  
+
+
+});
+/* -------------------
+  ? FIN: FUNCION MAIN()
+----------------------- */
+
+// Events: configuration buttons
+function configurationButtons() {
+  // * [BUTTON]: RANDOM OPERATION
+  $('input[name="chkOperacionRandom"]').on('change', function() {
+    const tachar = this.checked ? 'line-through' : '';
+    $('label[for="idSuma"], label[for="idResta"]').css('text-decoration', tachar);
+  });
+
+   // * [BUTTON]: CREATE -> Generate exercises
+   $("#formConfiguration").on("submit", function (e) {
+    e.preventDefault();
+    let parameters = new FormData(this);
+    parameters.append('action', "generate_sums");
+    resetSum();
+    generateData(parameters);
+    $('.numeros').removeClass('.numeros-cobro');
+  });
+
+  // * [INPUT]: #Numbers, #Digits -> Only Numbers
   $('input[name="inputNumbers"], input[name="inputDigits"]').on("keydown", function(event) {
     // Check if the Enter key is pressed
     let charCode = event.which ? event.which : event.keyCode;
@@ -265,11 +283,9 @@ $(function () {
     }
     event.preventDefault();
   });
-});
-/* -------------------
-  ? FIN: FUNCION MAIN()
------------------------ */
+}
 
+// Clean and prepare to next exercise
 function resetSum() {
   $(".btnStart").html('Comenzar');
   $(".timer").addClass("item-invisible");
@@ -283,7 +299,7 @@ function resetSum() {
 
 
 // * Review the User Response
-function reviewResponse(response) {
+export function reviewResponse(response) {
   let idExercise = $('.container_sum').attr("data-id");
   let correctResponse = exercises.items[idExercise].answer;
   let auxData = exercises.items[idExercise]
@@ -321,17 +337,17 @@ function reviewResponse(response) {
   $(".response").removeClass("item-invisible");
   stopChronometer();
   updateTimer();
+  auxData[MODO] = exercises.modo;
   auxData[USER_ANSWER] = response;
   auxData[TIME] = `${hours}:${minutes}:${seconds}`;
-  if(DATOSGENERALES[count]) {
+  if(DATOSGENERALES[count]) { // Update data
     DATOSGENERALES[count][USER_ANSWER] = auxData[USER_ANSWER];
     DATOSGENERALES[count][TIME] = auxData[TIME];
     DATOSGENERALES[count][RESULT] = auxData[RESULT];
-  } else {
+  } else {  // New data
     DATOSGENERALES.push(auxData);
   }
   localStorage.setItem('resultados', JSON.stringify(DATOSGENERALES));
   // console.log(JSON.parse(localStorage.getItem('resultados')) || []);
 }
 
-function createSums() {}

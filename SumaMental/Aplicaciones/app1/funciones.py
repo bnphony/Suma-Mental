@@ -31,6 +31,7 @@ def randomDigits(max_digits: int):
     return lower_bound, upper_bound
 
 def generate_payment(num_digits: int):
+    num_digits = min(num_digits, 4)
     DOLLARS = {'1000': 10, '500': 20, '100': 20, '50': 20, '20': 20, '10': 20, '5': 20, '1': 20 }
     CENTS = {'50': 20, '25': 20, '10': 20, '5': 20, '1': 100}
     data = {}
@@ -47,7 +48,7 @@ def generate_payment(num_digits: int):
     cost = round(random.uniform(1, number_payment), 2)
     data["cost"] = cost
     data["answer"] = round(number_payment - cost, 2)
-    
+    data["numbers"] = [number_payment, -cost]
     # Helper function to handle one dictionary (either DOLLARS or CENTS)
     def calculate_payment(value, available_funds, payment_part):
         for denom in sorted(available_funds.keys(), key=int, reverse=True):

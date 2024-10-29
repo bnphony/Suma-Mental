@@ -1,5 +1,5 @@
 let DATA = JSON.parse(localStorage.getItem('resultados')) || [];
-
+let MODO = '';
 var controlTime = {
     convertStringToTime: function (timeString) {
         let t1 = timeString.split(':').map(Number);
@@ -27,6 +27,7 @@ var controlTime = {
 }
 
 
+// SVG: Bars and Cake
 function renderGraphic(datos) {
 
     const chartData = [
@@ -311,6 +312,7 @@ function prepareData() {
     
     let tiempo_total = [0, 0, 0];
     $.each(DATA, (index, item) => {
+        MODO = item.modo;
         if (item['result'] === 1) {
             resultData['corrects']++;
         } else {
@@ -324,7 +326,11 @@ function prepareData() {
         tiempo_total = controlTime.sumTime(tiempo_total, time);
     });
     resultData['total_time'] = controlTime.formatTime(tiempo_total);
-    $('.exercises-info > p').text(`Ejercicios Resueltos: ${DATA.length}`);
+    let juego = MODO === 'completa' 
+        ? 'Operación Completa' : MODO === 'secuencial' 
+        ? 'Numeros Secuenciales' : 'Calcular Vuelto';
+    $('.exercises-info > p:nth-child(1)').text(`Modo de Juego: ${juego}`);
+    $('.exercises-info > p:nth-child(2)').text(`Ejercicios Resueltos: ${DATA.length}`);
     return resultData;
 }
 
@@ -338,7 +344,7 @@ function showExercises() {
         html += `<div class="exercise ${item.result ? 'correcto' : item.user_answer === "" ? 'sin-respuesta': 'incorrecto'}">
                 <div class="index-exercise">${index + 1}</div> `;
         item.numbers.forEach((value, i) => {
-            html += `<p>${value}</p>`;
+            html += `<p>${value > 0 ? '+ ' : '- '}${Math.abs(value)}</p>`;
         });
         
         html +=  `<hr class="divisor"/>
