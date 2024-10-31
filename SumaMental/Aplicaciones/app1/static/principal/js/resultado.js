@@ -209,7 +209,7 @@ function renderGraphic(datos) {
             .filter((d) => d.value > 0)
             .text((d) => `${d.data.category}\n${d.data.percentage.toFixed(2)}%`)
             .attr('transform', (d) => {
-                console.log("TRNASFORM: ", d);
+                // console.log("TRNASFORM: ", d);
                 const centroid = arc.centroid(d);
                 if(d.data.value < 1) {
                     const outsideRadius = 2.5;
@@ -337,14 +337,14 @@ function prepareData() {
 
 
 
-
+// Exercises solved in this game
 function showExercises() {
     let html = '';
     $.each(DATA, (index, item) => {
         html += `<div class="exercise ${item.result ? 'correcto' : item.user_answer === "" ? 'sin-respuesta': 'incorrecto'}">
                 <div class="index-exercise">${index + 1}</div> `;
         item.numbers.forEach((value, i) => {
-            html += `<p>${value > 0 ? '+ ' : '- '}${Math.abs(value)}</p>`;
+            html += `<p>${value > 0 ? '+ ' : '- '}${ Number.isInteger(value) ? Math.abs(value) : Math.abs(value).toFixed(2)}</p>`;
         });
         
         html +=  `<hr class="divisor"/>

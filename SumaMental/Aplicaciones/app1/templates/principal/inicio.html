@@ -26,11 +26,15 @@
         <div class="form-group">
           <div class="form-group container-operation">
             <span>Operación: </span>
-            <label for="idSuma">
-              <input id="idSuma" type="radio" value="suma" name="operaciones" checked> Suma
+            <label for="idSuma" class="custom-radio operacion-radio">
+              <input id="idSuma" type="radio" value="suma" name="operaciones" checked>
+              <span class="radio-label"></span>
+              Suma
             </label>
-            <label for="idResta">
-              <input id="idResta" type="radio" value="resta" name="operaciones"> Resta
+            <label for="idResta" class="custom-radio operacion-radio">
+              <input id="idResta" type="radio" value="resta" name="operaciones"> 
+              <span class="radio-label"></span>
+              Resta
             </label>
             <label for="id-operacion-random">
               <input id="id-operacion-random" name="chkOperacionRandom" type="checkbox"> Aleatorio
@@ -38,14 +42,20 @@
           </div>
           <div class="form-group">
             <span>Modo: </span>
-            <label for="idCompleta">
-              <input id="idCompleta" type="radio" value="completa" name="modos" checked> Operación Completa
+
+            <label for="idCompleta" class="custom-radio modo-radio">
+              <input id="idCompleta" type="radio" value="completa" name="modos" checked>
+              <span class="radio-label"></span>
+              Operación Completa
             </label>
-            <label for="idSecuencial">
-              <input id="idSecuencial" type="radio" value="secuencial" name="modos"> Numeros Secuenciales
-            </label>
-            <label for="idCobro">
-              <input id="idCobro" type="radio" value="cobro" name="modos"> Calcular Vuelto
+            <label for="idSecuencial" class="custom-radio modo-radio">
+              <input id="idSecuencial" type="radio" value="secuencial" name="modos">
+              <span class="radio-label"></span>
+              Numeros Secuenciales</label>
+            <label for="idCobro" class="custom-radio modo-radio">
+                <input id="idCobro" type="radio" value="cobro" name="modos">
+                <span class="radio-label"></span>
+              Calcular Vuelto
             </label>
           </div>
           <label for="id-select-rounds"><span># Rondas</span></label>

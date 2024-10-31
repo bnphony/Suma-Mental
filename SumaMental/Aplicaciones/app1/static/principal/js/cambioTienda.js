@@ -1,5 +1,11 @@
-import { reviewResponse } from './funciones.js';
+import { reviewResponse, highlightOption } from './funciones.js';
 
+// ELEMENTS
+const $highlight2 = $('<span>').addClass('highlight');
+$('body').append($highlight2);
+
+
+// GLOBAL VARIABLES
 const DOLLARS = {'1000': 0, '500': 0, '100': 0, '50': 0, '20': 0, '10': 0, '5': 0, '1': 0 }
 const CENTS = {'50': 0, '25': 0, '10': 0, '5': 0, '1': 0}
 const iconDollars = '💸';
@@ -14,11 +20,19 @@ const VUELTO = {
 
 }
 
+
+
 export function mainPayment() {
     // Disable the not necessary inputs of the form
-    $('input[name="modos"]').on('change', function() {
+    $('input[name="modos"]').on('change', function(e) {
+        if ($(this).prop('checked')) {
+            const $targetLabel = e.target.closest('Label');
+            highlightOption.call(this, $targetLabel, $highlight2);
+        }
        isCobroChecked();
     });
+    $('input[name="modos"]').trigger('change');
+
 
     // when do simple reload
     if ($('#idCobro').prop('checked')) {
@@ -30,6 +44,8 @@ export function mainPayment() {
 function addValue() {
     const id = this.dataset.id;
     const type = this.dataset.type;
+    if (DOLLARS[id] >= 99 || CENTS[id] >= 99) return;
+
     let count = 0;
     let total = 0;
     const $elementoExiste = document.querySelector(`.vuelto-basket > div[data-id="${id}"].${type}`);
@@ -44,12 +60,14 @@ function addValue() {
     if (!$elementoExiste) {
         $('.vuelto-basket').append(`
             <div class="${type}" data-id="${id}" data-type="${type}">
-                <div>${type === "DOLLARS" ? iconDollars : iconCents}<br/>${type === "DOLLARS" ? id : id/100}</div><div>x${count}</div>
+                <div>${type === "DOLLARS" ? iconDollars : iconCents}<br/>${type === "DOLLARS" ? id : (id/100).toFixed(2)}</div><div>x${count}</div>
             </div>`);
     } else {
+       
         const $powerX = $(`.vuelto-basket > div[data-id="${id}"].${type} > div:nth-child(2)`);
         $powerX.text(`x${count}`);
-        $powerX.css('font-size', `${20 + count * 2}px`);
+        $powerX.css('font-size', `${Math.min((20 + count * 2), 30)}px`);
+        
     }
    
     total = VUELTO.calcTotal();
@@ -83,7 +101,7 @@ function substractCobroClicked(e) {
 
 // * Generate the baskets and current options
 export function showPayment(data, count) {
-    console.log('paymet: ', data);
+    // console.log('paymet: ', data);
     $('.container_sum').attr("data-id", count);
     let html = `
         <div class="total-cobrar">Valor a Cobrar: <span class="negrita">$ ${data[count].cost}</span></div>
@@ -147,8 +165,8 @@ function drawCurrentPayment(currentPayment) {
         const innerHTML = Object.entries(innerObj)
             .map(([innerKey, value]) => `
                     <div class="${outerKey}" data-id="${innerKey}">
-                        <div>${outerKey === "DOLLARS" ? iconDollars : iconCents}<br/>${outerKey === "DOLLARS" ? innerKey : innerKey/100}</div>
-                        <div style="font-size: ${20 + 2 * value}px;">x${value}</div>
+                        <div>${outerKey === "DOLLARS" ? iconDollars : iconCents}<br/>${outerKey === "DOLLARS" ? innerKey : (innerKey/100).toFixed(2)}</div>
+                        <div style="font-size: ${Math.min(20 + 2 * value, 30)}px;">x${value}</div>
                     </div>`)
             .join('');
         return acc + innerHTML;

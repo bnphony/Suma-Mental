@@ -3,7 +3,12 @@ import { mainPayment, showPayment } from './cambioTienda.js';
   * Pagina Inicial
 */
 
+// ? COMPONENTS
+const $highlight1 = $('<span>').addClass('highlight');
+$('body').append($highlight1);
 
+
+// ? GLOBAL VARIABLES
 var hours = 0, minutes = 0, seconds = 0;
 let internal;
 var statusButton = false;
@@ -76,7 +81,7 @@ function generateData(cData) {
       contentType: false,
     })
       .done((data) => {
-        console.log("DATA: ", data);
+        // console.log("DATA: ", data);
         $(".numeros").empty();
         if (!data.hasOwnProperty("error")) {
           if (!$.isEmptyObject(data)) {
@@ -141,6 +146,20 @@ function showSum(data) {
 }
 
 
+export function highlightOption($label, $light) {
+  const labelCoords = $label.getBoundingClientRect();
+  const coords = {
+    width: labelCoords.width + 10,
+    height: labelCoords.height,
+    top: labelCoords.top + window.scrollY,
+    left: labelCoords.left + window.scrollX
+  }
+  $light.css('width', `${coords.width}px`);
+  $light.css('height', `${coords.height}px`);
+  $light.css('transform', `translate(${coords.left}px, ${coords.top}px)`);
+}
+
+
 /* -------------------
   * FUNCTION MAIN()
 ----------------------- */
@@ -148,6 +167,18 @@ $(function () {
 
   // * [MODULO]: Cobro Tienda
   mainPayment();
+
+  // * Configuration Input:Radio Highlight
+  
+  $('input[name="operaciones"]').on('change', function(e) {
+    if ($(this).prop('checked')) {
+      const $targetLabel = e.target.closest('Label');
+      highlightOption.call(this, $targetLabel, $highlight1);
+    } 
+  });
+  $('input[name="operaciones"]').trigger('change');
+  
+
 
   resetSum();
   $(".btnStart").prop('disabled', true);
@@ -333,7 +364,7 @@ export function reviewResponse(response) {
     $(".resultado").removeClass("correcto");
     auxData[RESULT] = 0;
   }
-  $(".response").text(`Tu respuesta: ${response}, Respuesta Correcta: ${correctResponse}`);
+  $(".response").text(`Tu respuesta: ${(isNaN(response) || response == '') ? 'Sin Respuesta' : response}, Respuesta Correcta: ${correctResponse}`);
   $(".response").removeClass("item-invisible");
   stopChronometer();
   updateTimer();
@@ -348,6 +379,5 @@ export function reviewResponse(response) {
     DATOSGENERALES.push(auxData);
   }
   localStorage.setItem('resultados', JSON.stringify(DATOSGENERALES));
-  // console.log(JSON.parse(localStorage.getItem('resultados')) || []);
 }
 
