@@ -136,11 +136,48 @@ function generatePayment(numDigits) {
 }
 
 
-
 $(document).ready(function() {
-  $('.container-fluid').load('../../templates/inicio.html');
+  function loadPage(page) {
+    const isResultado = page === '2';
+    localStorage.setItem('pagina-actual', page);
+    try {
+      $('.container-fluid').load(isResultado ? '../../templates/resultado.html' : '../../templates/inicio.html');
+    } catch(ex) {
+      alert('Un error ocurrio: ', ex);
+    }
+    updateBreadcrumb(isResultado);
+  }
 
-  $('.container-fluid').on('click', '.btnChange', function() {
-    $('.container-fluid').load('../../templates/resultado.html');
+  function updateBreadcrumb(isResultado) {
+    $('.breadcrumb').html(`
+      <li class="breadcrumb-item breadcrumb-home">Home</li>
+      ${isResultado ? '<li class="breadcrumb-item">Resultado</li>' : ''}
+    `);
+    if (isResultado) $('.breadcrumb li:nth-child(1)').addClass('active-link');
+  }
+
+  let currentPage = localStorage.getItem('pagina-actual') || '1';
+  loadPage(currentPage);
+
+  $('.container-fluid').on('click', '.btnNext', function(e) {
+    if ($(this).val() === 'finalizar') {
+      localStorage.setItem('pagina-actual', '2');
+      location.reload();
+    }
+  });
+
+  $('.container-fluid').on('click', '.btnTryAgain', function(e) {
+    localStorage.setItem('pagina-actual', '1');
+    location.reload();
+  });
+  
+  
+  // Event for clicking the "Home" breadcrumb link
+  $('.breadcrumb').on('click', '.breadcrumb-home', function(e) {
+    let page = localStorage.getItem('pagina-actual');
+    if (page === '2') {
+      localStorage.setItem('pagina-actual', '1');
+      location.reload();
+    }
   });
 });

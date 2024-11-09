@@ -242,6 +242,7 @@ $(function () {
         $(this).text('Finalizar');
         $(this).addClass('btn-danger');
       }
+      $(this).val('continuar');
     } else {
       if(!DATOSGENERALES[count]) {
         let auxData = exercises.items[count];
@@ -252,7 +253,7 @@ $(function () {
         DATOSGENERALES.push(auxData);
         localStorage.setItem('resultados', JSON.stringify(DATOSGENERALES));
       }
-      location.href = '/resultado/';
+      $(this).val('finalizar');
 
       // let notification = { title: "Ups!", text: "No hay mas ejercicios.", icon: "error",}
       // notificacion_simple(notification)
@@ -288,6 +289,7 @@ $(function () {
   ? FIN: FUNCION MAIN()
 ----------------------- */
 
+
 // Events: configuration buttons
 function configurationButtons() {
   // * [BUTTON]: RANDOM OPERATION
@@ -298,12 +300,12 @@ function configurationButtons() {
 
    // * [BUTTON]: CREATE -> Generate exercises
    $("#formConfiguration").on("submit", function (e) {
-    e.preventDefault();
-    let parameters = new FormData(this);
-    parameters.append('action', "generate_sums");
-    resetSum();
-    generateData(parameters);
-    $('.numeros').removeClass('.numeros-cobro');
+     e.preventDefault();
+     let parameters = new FormData(this);
+     parameters.append('action', "generate_sums");
+     resetSum();
+     generateData(parameters);
+     $('.numeros').removeClass('.numeros-cobro');
   });
 
   // * [INPUT]: #Numbers, #Digits -> Only Numbers
