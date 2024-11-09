@@ -73,37 +73,48 @@ function generateData(cData) {
     count = 0;
     $(".btnStart").prop("disabled", false);
     $(".btnNext").prop("disabled", false);
-    $.ajax({
-      url: window.location.pathname,
-      type: "POST",
-      data: cData,
-      processData: false,
-      contentType: false,
-    })
-      .done((data) => {
-        // console.log("DATA: ", data);
-        $(".numeros").empty();
-        if (!data.hasOwnProperty("error")) {
-          if (!$.isEmptyObject(data)) {
-              exercises.items = data.info;
-              exercises.modo = data.modo;
-              if (exercises.modo === 'cobro') $('.numeros').addClass('numeros-cobro');
-              $('.divisor').css('display', exercises.modo === 'completa' ? 'block' : 'none');
-              $('.numeros').css('margin-bottom', exercises.modo === 'completa' ? '0px' : '10px');
-              $(".navigate-sum").text(`${count+1}/${data.info.length}`);
-              $(".modo-juego").text(`${exercises.modo === 'completa' 
-                ? 'Operacion Completa' 
-                : exercises.modo === 'secuencial' ? 'Numeros Secuenciales' 
-                : 'Calcular Vuelto'}`);
-          } else {
-            alert("No se pudo generar la suma!");
-          }
-        }
-      })
-      .fail((jqXHR, textStatus, errorThrown) => {
-        alert(`${textStatus}: ${errorThrown}`);
-      })
-      .always((data) => {});
+    const newData = {};
+    const modo = cData.get('modos');
+    const numbers = parseInt(cData.get('inputNumbers'));
+    const rondas = parseInt(cData.get('selectRounds'));
+    const digits = parseInt(cData.get('inputDigits'));
+    const operacion = cData.get('operaciones');
+    const operacion_random = cData.has('chkOperacionRandom') ? cData.get('chkOperacionRandom') : 0;
+    const digits_random = cData.has('chkDigitsRandom') ? cData.get('chkDigitsRandom') : 0;
+    newData['modo'] = modo
+    const operaciones_creadas = [];
+    if (modo === 'cobro') {
+      for (let i=0; i < rondas; i++) {
+        operaciones_creadas.push(generatePayment(digits));
+      }
+    } else {
+      for (let i=0; i < rondas; i++) {
+        operaciones_creadas.push(generateNumbers(numbers, digits, operacion, digits_random, operacion_random));
+      }
+    }
+    newData['info'] = operaciones_creadas;
+
+    
+   
+    // console.log("DATA: ", data);
+    $(".numeros").empty();
+    if (!newData.hasOwnProperty("error")) {
+      if (!$.isEmptyObject(newData)) {
+          exercises.items = newData.info;
+          exercises.modo = newData.modo;
+          if (exercises.modo === 'cobro') $('.numeros').addClass('numeros-cobro');
+          $('.divisor').css('display', exercises.modo === 'completa' ? 'block' : 'none');
+          $('.numeros').css('margin-bottom', exercises.modo === 'completa' ? '0px' : '10px');
+          $(".navigate-sum").text(`${count+1}/${newData.info.length}`);
+          $(".modo-juego").text(`${exercises.modo === 'completa' 
+            ? 'Operacion Completa' 
+            : exercises.modo === 'secuencial' ? 'Numeros Secuenciales' 
+            : 'Calcular Vuelto'}`);
+      } else {
+        alert("No se pudo generar la suma!");
+      }
+    }
+     
   }   
 }
 
@@ -324,7 +335,9 @@ function resetSum() {
   resetChronometer();
   $(".response").addClass("item-invisible");
   $(".resultado").addClass("item-invisible");
+
   $('input[name="txt-answer"]').prop("disabled", true)
+      .addClass('item-invisible')
       .val("");
 }
 

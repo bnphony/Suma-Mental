@@ -1,22 +1,20 @@
-{% extends 'body.html' %} 
-{% load static %}
 
-<!-- * Librerias Extra -->
-{% block librerias_extra %}
-<link rel="stylesheet" href="{% static 'principal/css/principal.css' %}" />
+<!-- * Librerias Extra *-->
+<link rel="stylesheet" href="../static/css/principal.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
-<script src="{% static 'principal/js/funciones.js' %}" type="module"></script>
-{% endblock librerias_extra %}
 
-{% block content %} 
+<script src="../static/js/funciones.js" type="module"></script>
+
+
+
 
 <h1>Suma Mental</h1>
 <p class="instruction">* Realiza las siguientes operaciones mentalmente.</p>
 <div class="general_container">
   
-  {% comment %} CONFIGURACION {% endcomment %}
+  <!-- * CONFIGURACION * -->
   <div class="configuration">
     <div class="config-title">
       <p>Configuración</p>
@@ -90,14 +88,12 @@
     </div>
   </div>
 
-  
-  {% comment %} Container Sums {% endcomment %}
+  <!-- * Container Sums * -->
   <div class="container_general_sums">
     <span class="navigate-sum"></span>
     <span class="modo-juego">Modo de Juego</span>
     <button type="button" tab-index="0" class="btnStart" disabled="true">Comenzar</button>
-  
-    {% comment %} Container each sum {% endcomment %}
+  <!-- * Container each sum * -->
     <div class="container_sum" data-id="10">
       <div class="numeros">
 
@@ -107,7 +103,7 @@
         <form action=".">
           <input type="text" tab-index="1" placeholder="0" name="txt-answer" disabled="true"/>
         </form>
-        {% comment %} Final Comments {% endcomment %}
+        <!-- * Final Comments * -->
         <p class="item-invisible resultado"></p>
         <strong class="item-invisible timer"></strong>
         <p class="item-invisible response"></p>
@@ -118,10 +114,10 @@
     </div>
   </div>
 </div>
+<div><button class="btnChange">Click Me!</button></div>
 
-{% comment %} Dialog to show the current options {% endcomment %}
+<!-- * Dialog to show the current options * -->
 <div class="tooltip">
 
 </div>
 
-{% endblock content %}
