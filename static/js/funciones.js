@@ -1,4 +1,4 @@
-import { mainPayment, showPayment } from '/Suma-Menta/static/js/cambioTienda.js';
+import { mainPayment, showPayment } from '/Suma-Mental/static/js/cambioTienda.js';
 /*
   * Pagina Inicial
 */
