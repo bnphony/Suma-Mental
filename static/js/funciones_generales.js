@@ -141,7 +141,7 @@ $(document).ready(function() {
     const isResultado = page === '2';
     localStorage.setItem('pagina-actual', page);
     try {
-      $('.container-fluid').load(isResultado ? '../../templates/resultado.html' : '../../templates/inicio.html');
+      $('.container-fluid').load(isResultado ? './templates/resultado.html' : './templates/inicio.html');
     } catch(ex) {
       alert('Un error ocurrio: ', ex);
     }
