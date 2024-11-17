@@ -15,19 +15,18 @@
 </div>
 
 ## Indice
-- [App Móvil para la Gestión de Ventas](#app-móvil-para-la-gestión-de-ventas)
+- [Operaciones Mentales](#operaciones-mentales)
   - [Descripción](#descripción)
-    - [Tecnologías](#tecnologías)
+     - [Tecnologías](#tecnologías)
   - [Dominio](#dominio)
-    - [Cliente](#cliente)
-    - [Producto](#producto)
-    - [Venta](#venta)
-    - [Productos Vendidos](#productos-vendidos)
-    - [Usuario](#usuario)
+     - [Configuración](#configuración)
+     - [Operación Completa](#operación-completa)
+     - [Números Secuenciales](#números-secuenciales)
+     - [Calcular Vuelto](#calcular-vuelto)
   - [Funciones](#funciones)
-    - [Probar la Aplicación](#probar-la-aplicación)
+     - [Sitio de la Aplicación](#sitio-de-la-aplicación)
   - [Autor](#autor)
-    - [Contacto](#contacto)
+     - [Contacto](#contacto)
   - [Licencia de Uso](#licencia-de-uso)
 
 ## Descripción
@@ -85,7 +84,7 @@ Cualquier usuario que entre en la pagina puede configurar la generación de oper
     <td witdh="100%">
       <h3 align="center">Panel de Configuración</h3>
       <div align="center">
-        <img src="./static/img/Configuration_Panel.png" width="200" alt="Configuration Panel">
+        <img src="https://github.com/bnphony/Suma-Mental/tree/deployed/static/img/Configuration_Panel.PNG" width="200" alt="Configuration Panel">
         <p>
           - Opciones de Configuración: Tipo de Operación, Modo de Juego, Número de Rondas, Cantidad de Numeros, Cantidad de Dígitos.
         </p>
@@ -96,20 +95,11 @@ Cualquier usuario que entre en la pagina puede configurar la generación de oper
   
   <tr>
     <td witdh="100%">
-      <h3 align="center">Crear un Usuario</h3>
+      <h3 align="center">Operación Completa</h3>
       <div align="center">
-        <img src="./img_ventas/crear_usuario.png" width="200" alt="Splash Screen">
+        <img src="https://github.com/bnphony/Suma-Mental/tree/deployed/static/img/Configuration_Panel.PNG" width="200" alt="Splash Screen">
         <p>
-          - Crear una cuenta de usuario para acceder a la aplicación. Campo de confirmación de contraseña.
-        </p>
-      </div>
-    </td>
-    <td witdh="50%">
-      <h3 align="center">Menú Principal</h3>
-      <div align="center">
-        <img src="./img_ventas/main_menu.png" width="200" alt="Splash Screen">
-        <p>
-          - Saludo de bienvenida al usuario. Opciones: Gestión de Clientes, Gestión de Productos, Gestión de Ventas y Opción para Cerrar Sesión. 
+          - Todos los números se presenta en pantalla.
         </p>
       </div>
     </td>
@@ -117,36 +107,50 @@ Cualquier usuario que entre en la pagina puede configurar la generación de oper
 
   
   <tr>
-    <td witdh="50%">
-      <h3 align="center">Gestión de Clientes</h3>
+    <td witdh="100%">
+      <h3 align="center">Números Secuenciales</h3>
       <div align="center">
-        <img src="./img_ventas/create_client.png" width="200" alt="Splash Screen">
+        <img src="https://github.com/bnphony/Suma-Mental/tree/deployed/static/img/Configuration_Panel.PNG" width="200" alt="Splash Screen">
         <p>
-          - CREATE, LIST, UPDATE, DELETE clientes.
-        </p>
-      </div>
-    </td>
-    <td witdh="50%">
-      <h3 align="center">Gestión de Productos</h3>
-      <div align="center">
-        <img src="./img_ventas/create_product.png" width="200" alt="Splash Screen">
-        <p>
-          - CREATE, LIST, UPDATE, DELETE productos. </br>
-        - La fecha de caducidad no puede ser menor que la fecha actual. 
+          - Los números son presentados uno por uno secuencialmente.
         </p>
       </div>
     </td>
   </tr>
 
   <tr>
-    <td witdh="100%" colspan="2">
-      <h3 align="center">Gestión Ventas</h3>
+    <td witdh="100%">
+      <h3 align="center">Calcular Vuelto</h3>
       <div align="center">
-        <img src="./img_ventas/create_sale.png" width="200" alt="Splash Screen">
+        <img src="https://github.com/bnphony/Suma-Mental/tree/deployed/static/img/Configuration_Panel.PNG" width="200" alt="Splash Screen">
         <p>
-          - CREATE, LIST Ventas
-          - Uso de Dialog para seleccionar el producto y la cantidad a vender.<br/>
-          - Seleccionar el cliente de la venta.
+          - El sistema presenta la cantidad a cobrar el pago del cliente (dólares y centavos). El usuario debe calcular el pago del cliente y la cantidad a devolver.
+        </p>
+      </div>
+    </td>
+    
+  </tr>
+  <tr>
+    <td witdh="100%">
+      <h3 align="center">Ejercicios Resueltos</h3>
+      <div align="center">
+        <img src="https://github.com/bnphony/Suma-Mental/tree/deployed/static/img/Configuration_Panel.PNG" width="200" alt="Splash Screen">
+        <p>
+          - Resultados: Ejercicios resultados por el usuario, la respuesta enviada y su valoración.
+        </p>
+      </div>
+    </td>
+    
+  </tr>
+
+  <tr>
+    <td witdh="100%">
+      <h3 align="center">Gráfico de los Resultados</h3>
+      <div align="center">
+        <img src="https://github.com/bnphony/Suma-Mental/tree/deployed/static/img/Configuration_Panel.PNG" width="200" alt="Splash Screen">
+        <p>
+          - Gráfico de Barras: Número de respuestas correctas, incorrectas y sin respuesta.<br/>
+          - Gráfico de Sectores (Pastel): Porcentaje de respuestas correctas, incorrectas y sin respuesta.
         </p>
       </div>
     </td>
@@ -154,9 +158,9 @@ Cualquier usuario que entre en la pagina puede configurar la generación de oper
   </tr>
 </table>
 
-### Probar la Aplicación
+### Sitio de la Aplicación
 
-[Descargar la aplicación](https://github.com/bnphony/Ventas-AS/tree/master/img_ventas/app.apk)
+[Link de la aplicación](https://bnphony.github.io/Suma-Mental/)
 
 
 
