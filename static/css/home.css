@@ -1,0 +1,50 @@
+/* *-> HEADER */
+
+.container-header {
+  padding-block: 10px;
+}
+nav {
+  background-color: cadetblue;
+  padding-left: 20px;
+}
+
+nav a:hover {
+  text-decoration: none;
+}
+
+.active-link {
+  color: cadetblue;
+  cursor: pointer;
+}
+.active-link:hover {
+  color: #ff7f7f;
+}
+
+/* *-> FOOTER */
+
+footer {
+  background-color: cadetblue;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+}
+footer address {
+  margin-bottom: 0;
+}
+
+/* Container Principal: content */
+.content {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* BODY */
+body {
+  background-color: #ff7f7f;
+  font-family: arial;
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+}

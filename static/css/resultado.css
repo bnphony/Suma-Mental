@@ -1,0 +1,82 @@
+.container-result {
+  margin-top: 20px;
+}
+.result-title {
+  width: 100%;
+  text-align: center;
+}
+
+.container-exercises {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.exercises {
+  margin-bottom: 20px;
+}
+.exercise {
+  position: relative;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding-block: 5px;
+  overflow: hidden;
+  box-shadow: 0.3rem 0.3rem 1rem rgba(0, 0, 0, 0.5);
+}
+.correcto {
+  background-color: rgb(63, 255, 51);
+}
+.incorrecto {
+  background-color: rgba(255, 51, 82);
+}
+.sin-respuesta {
+  background-color: cadetblue;
+}
+p.answer {
+  font-weight: bold;
+}
+
+.exercise .index-exercise {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: aliceblue;
+  padding: 5px;
+}
+.exercise p {
+  margin: 0;
+}
+/* Divisor */
+.divisor {
+  margin-top: 0;
+  border: none;
+  border-top: 1px solid black;
+  height: 1px;
+  width: 100px;
+  margin-bottom: 0;
+}
+
+/* * CONTAINER EXERCISES RESULT */
+.exercises-result {
+  border: 5px solid rgba(0, 0, 0, 0.7);
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+.exercises-result > .container-graphic {
+  width: 100%;
+  background-color: green;
+}
+
+.exercises-result > .container-graphic > svg {
+  fill: rgba(255, 14, 14, 0.5);
+  width: 100%;
+}
+
+/* SVG */
+
+@media (max-width: 480px) {
+  .container-exercises {
+    grid-template-columns: 1fr 1fr;
+  }
+}

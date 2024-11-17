@@ -1,0 +1,460 @@
+/* Contenedor General */
+
+:root {
+  --highlight-color: aliceblue;
+  --dot-radio: #333;
+  --card-dollar: greenyellow;
+  --card-cents: rgb(122, 122, 122);
+}
+
+.general_container {
+  display: flex;
+  flex-direction: column;
+  margin-block: 20px;
+}
+
+.instruction {
+  margin-bottom: 0;
+}
+
+/* 
+* Container: CONFIGURATION
+ */
+.configuration {
+  margin-block: 10px;
+}
+
+.config-title {
+  background-color: var(--highlight-color);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-weight: bold;
+  padding: 10px;
+}
+.config-title p {
+  margin: 0;
+}
+
+.config-content {
+  background-color: cadetblue;
+  padding-block: 10px;
+  display: flex;
+  justify-content: center;
+}
+#formConfiguration {
+  width: 80%;
+  text-align: center;
+  z-index: 10;
+}
+
+#formConfiguration span {
+  font-weight: bold;
+}
+
+.config-content #id-select-rounds {
+  width: 100px;
+}
+.config-content .btnCreate {
+  width: 50%;
+  font-weight: bold;
+  background-color: aliceblue;
+  color: #000;
+  margin: auto 0;
+}
+
+/* !INPUT: Radio personalizado */
+
+/* Hide the original radio button */
+input[type="radio"] {
+  display: none;
+  z-index: 10;
+}
+
+/* Style the custom radio button */
+.custom-radio {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+  z-index: 10;
+}
+
+/* Create the circle for the radio button */
+.radio-label {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--highlight-color);
+  border-radius: 50%;
+  margin-right: 8px;
+  display: inline-block;
+  position: relative;
+  z-index: 10;
+}
+
+/* Add a dot inside the circle when checked */
+input[type="radio"]:checked + .radio-label::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: var(--dot-radio);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+input[type="radio"]:disabled + .radio-label {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: var(--highlight-color);
+  z-index: 10;
+}
+
+/* Optional: Hover effect */
+/* .custom-radio:hover .radio-label {
+  border-color: var(--dot-radio);
+} */
+
+/* !FIN: Input Radio Personalizado */
+
+/* Boton Comenzar */
+.btnStart {
+  background-color: greenyellow;
+  flex-basis: content;
+  border: none;
+  font-weight: bold;
+  padding: 10px;
+  margin: 10px 0;
+  transition: ease-in-out 0.1;
+}
+.btnStart:hover {
+  cursor: pointer;
+  scale: 1.2;
+}
+.btnStart:disabled {
+  cursor: not-allowed;
+}
+
+/* * Contenedor Sumas */
+
+.container_general_sums {
+  border: 1px solid black;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.navigate-sum {
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  opacity: 0.5;
+}
+
+/* 
+* Contenedor Suma 
+*/
+.container_sum {
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.container_sum .numeros {
+  text-align: right;
+  max-width: 55%;
+}
+
+.container_sum .numeros-cobro {
+  text-align: center;
+  max-width: 100%;
+}
+
+.container_sum p {
+  margin: 0;
+  margin-top: 5px;
+  font-size: 25px;
+}
+
+.continer_sum p.secuencial {
+  font-size: 30px;
+}
+
+.modo-juego {
+  font-weight: bold;
+}
+
+/* Divisor */
+.divisor {
+  margin-top: 0;
+  border: none;
+  border-top: 1px solid black;
+  height: 1px;
+  width: 100px;
+}
+
+.container_sum .answer {
+  text-align: center;
+}
+
+/* INPUT response */
+input[name="txt-answer"] {
+  text-align: center;
+}
+
+/* Resultado */
+.resultado {
+  font-size: 30px;
+  font-weight: bold;
+  -webkit-text-stroke: 1px black;
+}
+.correcto::before {
+  content: "Correcto!";
+  color: greenyellow;
+}
+.incorrecto::before {
+  content: "Incorrecto!";
+  color: orangered;
+}
+
+/* NEXT */
+.container-next {
+  margin-top: 10px;
+}
+
+/* Configurar Input Number */
+/* Hide arrows in input number for Chrome, Safari, and Edge */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide arrows in input number for Firefox */
+/* input[type="number"] {
+  -moz-appearance: textfield;
+} */
+
+.item-invisible {
+  display: none;
+}
+
+/* Empty <p> */
+.empty-p {
+  min-height: 30px;
+}
+
+/* Checkboxs */
+input[type="checkbox"] {
+  scale: 1.5;
+  margin-left: 10px;
+  margin-right: 5px;
+}
+
+input:disabled {
+  cursor: not-allowed;
+}
+
+/* ----------------------   */
+/*    ? COBRO TIENDA        */
+/* ----------------------   */
+.tablet {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "client cobro" "current current" "confirm confirm";
+  grid-row-gap: 20px;
+}
+
+.tablet > div {
+  min-height: 20px;
+  padding: 10px;
+}
+
+.client-basket,
+.vuelto-basket {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 5px;
+  row-gap: 5px;
+  grid-auto-rows: min-content;
+  margin-inline: 5px;
+
+  padding: 10px;
+  background-color: #e0e0e0;
+  border: 5px solid #ccc;
+  border-radius: 10px;
+  box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.client-basket {
+  grid-area: client;
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
+.vuelto-basket {
+  grid-area: cobro;
+  background-color: rgba(0, 255, 0, 0.2);
+}
+
+.confirm-vuelto {
+  grid-area: confirm;
+  background: linear-gradient(180deg, cadetblue, rgba(255, 255, 255, 1) 100%);
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 20px;
+  transition: scale;
+}
+
+.confirm-vuelto:hover {
+  cursor: pointer;
+  scale: 1.1;
+}
+
+/* CURRENCY OPTIONS */
+
+.current-options {
+  grid-area: current;
+  background-color: blueviolet;
+  border-radius: 10px;
+}
+.container-dollars,
+.container-cents {
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.container-dollars > p,
+.container-cents > p {
+  margin-bottom: 10px;
+}
+
+.container-dollars {
+  background-color: var(--card-dollar);
+}
+.container-cents {
+  background-color: var(--card-cents);
+}
+
+.container-dollars > button,
+.container-cents > button {
+  margin-inline: 5px;
+  padding: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+  transition: scale 0.1s;
+}
+.container-dollars > button:hover,
+.container-cents > button:hover {
+  scale: 1.1;
+}
+
+.hr-divider {
+  margin-block: 5px;
+}
+
+.total-cobrar {
+  font-size: 20px;
+}
+
+.DOLLARS,
+.CENTS {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  font-family: "Comic Neue";
+  font-size: 20px;
+}
+
+.CENTS {
+  color: white;
+}
+
+.DOLLARS > div:nth-child(1),
+.CENTS > div:nth-child(1) {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+/* .DOLLARS > div:nth-child(2),
+.CENTS > div:nth-child(2) {
+  -webkit-text-stroke: 1px black;
+} */
+
+.DOLLARS {
+  background-color: var(--card-dollar);
+}
+.CENTS {
+  background-color: var(--card-cents);
+}
+
+/* * INICIO: ANIMACION DE FORE-GROUND */
+/* Bajar cortina */
+[data-type].DOLLARS,
+[data-type].CENTS {
+  position: relative;
+  overflow: hidden;
+  cursor: zoom-out;
+}
+
+[data-type].DOLLARS::before,
+[data-type].CENTS::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.5));
+  transition: top 0.3s ease; /* Slide effect */
+}
+
+[data-type].DOLLARS:hover::before,
+[data-type].CENTS:hover::before {
+  top: 0;
+}
+
+/* !FIN: ANIMACION DE FORE-GROUND */
+
+/* NEGRITA */
+span.negrita {
+  font-weight: bold;
+}
+
+/* Tooltip */
+.highlight {
+  transition: all 0.2s;
+  border-bottom: 2px solid var(--highlight-color);
+  position: absolute;
+  top: 0;
+  background: var(--highlight-color);
+  left: 0;
+  z-index: 0;
+  border-radius: 20px;
+  display: block;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* TODO: MEDIA QUERY */
+
+@media (max-width: 720px) {
+  .client-basket,
+  .vuelto-basket {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .client-basket,
+  .vuelto-basket {
+    grid-template-columns: 1fr 1fr;
+  }
+}

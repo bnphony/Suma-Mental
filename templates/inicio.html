@@ -1,0 +1,122 @@
+
+<!-- * Librerias Extra *-->
+<link rel="stylesheet" href="/Suma-Mental/static/css/principal.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+
+<script src="/Suma-Mental/static/js/funciones.js" type="module"></script>
+
+
+
+
+<h1>Suma Mental</h1>
+<p class="instruction">* Realiza las siguientes operaciones mentalmente.</p>
+<div class="general_container">
+  
+  <!-- * CONFIGURACION * -->
+  <div class="configuration">
+    <div class="config-title">
+      <p>Configuración</p>
+    </div>
+    <div class="config-content">
+      <form action="." id="formConfiguration">
+        <div class="form-group">
+          <div class="form-group container-operation">
+            <span>Operación: </span>
+            <label for="idSuma" class="custom-radio operacion-radio">
+              <input id="idSuma" type="radio" value="suma" name="operaciones" checked>
+              <span class="radio-label"></span>
+              Suma
+            </label>
+            <label for="idResta" class="custom-radio operacion-radio">
+              <input id="idResta" type="radio" value="resta" name="operaciones"> 
+              <span class="radio-label"></span>
+              Resta
+            </label>
+            <label for="id-operacion-random">
+              <input id="id-operacion-random" name="chkOperacionRandom" type="checkbox"> Aleatorio
+            </label>
+          </div>
+          <div class="form-group">
+            <span>Modo: </span>
+
+            <label for="idCompleta" class="custom-radio modo-radio">
+              <input id="idCompleta" type="radio" value="completa" name="modos" checked>
+              <span class="radio-label"></span>
+              Operación Completa
+            </label>
+            <label for="idSecuencial" class="custom-radio modo-radio">
+              <input id="idSecuencial" type="radio" value="secuencial" name="modos">
+              <span class="radio-label"></span>
+              Numeros Secuenciales</label>
+            <label for="idCobro" class="custom-radio modo-radio">
+                <input id="idCobro" type="radio" value="cobro" name="modos">
+                <span class="radio-label"></span>
+              Calcular Vuelto
+            </label>
+          </div>
+          <label for="id-select-rounds"><span># Rondas</span></label>
+          <select name="selectRounds" id="id-select-rounds">
+            <option value="1">1</option>
+            <option value="3" selected>3</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+          </select>
+        </div>
+
+        <div class="form-group row d-flex justify-content-around">
+          <div class="form-group">
+            <label for="id-numbers"><span># Números</span>
+              <input id="id-numbers" class="form-control" name="inputNumbers" type="number" placeholder="1" min="1" max="20" value="2">
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="id-digits"><span># Digitos</span>
+              <input id="id-digits" class="form-control" name="inputDigits" type="number" placeholder="1" min="1" max="10" value="1">
+            </label>
+            <label for="id-digits-random">
+              <input id="id-digits-random" name="chkDigitsRandom" type="checkbox"> Aleatorio
+            </label>
+          </div>
+        </div>
+        <div class="form-group row">
+          <button type="submit" class="btn btnCreate mx-auto">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- * Container Sums * -->
+  <div class="container_general_sums">
+    <span class="navigate-sum"></span>
+    <span class="modo-juego">Modo de Juego</span>
+    <button type="button" tab-index="0" class="btnStart" disabled="true">Comenzar</button>
+  <!-- * Container each sum * -->
+    <div class="container_sum" data-id="10">
+      <div class="numeros">
+
+      </div>
+      <hr class='divisor'/>
+      <div class="answer">
+        <form action=".">
+          <input type="text" tab-index="1" placeholder="0" name="txt-answer" disabled="true"/>
+        </form>
+        <!-- * Final Comments * -->
+        <p class="item-invisible resultado"></p>
+        <strong class="item-invisible timer"></strong>
+        <p class="item-invisible response"></p>
+      </div>
+      <div class="container-next row">
+        <button type="Button" tab-index="2" class="btn btn-primary btnNext mx-auto" value="continuar" disabled="true">Siguiente</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- * Dialog to show the current options * -->
+<div class="tooltip">
+
+</div>
+
