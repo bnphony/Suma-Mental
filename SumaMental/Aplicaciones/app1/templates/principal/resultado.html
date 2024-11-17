@@ -1,4 +1,8 @@
+{% extends "body.html" %}
+{% load static %}
 
+
+{% block content %}
 <div class="container-result">
     <div class="result-title">
         <h2>Resultados</h2>
@@ -18,11 +22,15 @@
         </div>
     </div>
     <div class="btn-controlers d-flex justify-content-center my-3">
-
-        <button type="button" class="btn btn-success btnTryAgain">Volver a Intentar <i class="fas fa-redo"></i></button>
+        <a href="{% url "principal:home" %}" class="btn btn-success">Volver a Intentar <i class="fas fa-redo"></i></a>
     </div>
 </div>
 
-<link rel="stylesheet" href="/Suma-Mental/static/css/resultado.css">
-<script src="/Suma-Mental/static/js/resultado.js"></script>
+{% endblock content %}
 
+{% block librerias_extra %}
+<link rel="stylesheet" href="{% static 'principal/css/resultado.css' %}">
+<script src="{% static 'principal/js/resultado.js' %}"></script>
+<!-- D3 -->
+<script src="https://d3js.org/d3.v6.js" defer></script>
+{% endblock librerias_extra %}

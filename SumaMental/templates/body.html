@@ -1,0 +1,24 @@
+{% extends "home.html" %} 
+
+{% block body %}
+<body>
+  {% include "header.html" %} 
+  
+  {% block librerias_extra %}
+    
+  {% endblock librerias_extra %}
+  
+  <div class="content">
+      <div class="contaner-fluid">
+          {% block content %}
+          
+          {% endblock content %}
+      </div>
+  </div>
+
+  {% include "footer.html" %}
+
+  {% block javascript %}{% endblock javascript %}
+</body>
+
+{% endblock body %}

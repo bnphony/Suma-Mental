@@ -12,14 +12,6 @@ nav a:hover {
   text-decoration: none;
 }
 
-.active-link {
-  color: cadetblue;
-  cursor: pointer;
-}
-.active-link:hover {
-  color: #ff7f7f;
-}
-
 /* *-> FOOTER */
 
 footer {

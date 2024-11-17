@@ -1,4 +1,4 @@
-import { reviewResponse, highlightOption } from '/Suma-Mental/static/js/funciones.js';
+import { reviewResponse, highlightOption } from './funciones.js';
 
 // ELEMENTS
 const $highlight2 = $('<span>').addClass('highlight');
