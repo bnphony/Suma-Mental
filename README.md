@@ -31,7 +31,7 @@
   - [Licencia de Uso](#licencia-de-uso)
 
 ## Descripción
-Sistema para ejercitar la resolucion de operaciones de suma/resta mentalmente. Desarrollado en Python utilizando el framework Django (version 1) y solo JavaScript/JQuery (version 2).
+Sistema para ejercitar la resolucion de operaciones de suma/resta mentalmente. Desarrollado en Python utilizando el framework Django (master) y solo JavaScript/JQuery (deployed).
 Funciones Principales:
 - Panel del Configuración para personalizar la forma de presentación de las operaciones (suma/resta/combinadas).
 - Calcular el vuelto correspondiente.
@@ -46,65 +46,12 @@ Funciones Principales:
   
 ## Dominio
 
-Gestionar usuarios, productos, clientes y ventas, sabemos que:
-- Un cliente puede comprar uno o varios productos.
-- Varios productos pueden ser vendido a un cliente en una sola venta.
-- Una Venta es realizada por un cliente y contiene varios productos.
-- Un usuario puede crearse una cuenta para acceder al sistema, iniciar sesión, crear productos, registrar clientes y registrar ventas.
+Cualquier usuario que entre en la pagina puede configurar la generación de operaciones matematicas(suma/resta) para luego resolverlas mentalmente. Adicionalmente existe la opción de cobrar vuelto. Las 3 funciones principales:
+- Operación Completas: se presentan todos los numeros en pantalla.
+- Numeros Secuenciales: los numeros van apareciendo y desapariendo uno tras de otro.
+- Calcular Vuelto: el sistema presenta la cantidad a cobrar y la cantidad que pago el cliente, el usuario debe calcular la cantidad a devolver(vuelto).
 
-### Cliente
 
-| Campo     | Tipo   | Descripción              |
-|-----------|--------|--------------------------|
-| id        | UUID   | Identificador único      |
-| nombre    | text   | Nombre del Cliente       |
-| apellido  | text   | Apellido del Cliente     |
-| cedula    | text   | Cédula del Cliente       |
-| telefono  | text   | Teléfono del Cliente     |
-| direccion | text   | Dirección del Cliente    |
-
-### Producto
-
-| Campo       | Tipo   | Descripción                        |
-|-------------|--------|------------------------------------|  
-| id          | UUID   | Identificador único                |
-| nombre      | text   | Nombre del Producto                |
-| descripcion | text   | Descripción del Producto           |
-| precio      | real   | Precio del Producto                |
-| iva         | real   | IVA del Producto                   |
-| stock       | text   | Cantidad del Producto              |
-| f_caducidad | text   | Fecha de Caducidad del Producto    |
-
-### Venta
-
-| Campo       | Tipo    | Descripción                   |
-|-------------|---------|-------------------------------|
-| id          | UUID    | Identificador único           |
-| titulo      | text    | Título de la Venta            |
-| fecha       | text    | Fecha de la Venta             |
-| estado      | text    | Estado de la Venta            |
-| total       | real    | Precio Total de la Venta      |
-| observacion | text    | Observación de la Venta       |
-| fk_cliente  | Cliente | Cliente de la Venta (no nulo) |
-
-### Productos Vendidos
-
-| Campo       | Tipo     | Descripción                                      |
-|-------------|----------|--------------------------------------------------|
-| id          | UUID     | Identificador único                              |
-| cantidad    | real     | Cantidad del producto vendido                    |
-| sub_total   | real     | Precio Total de la Venta antes de aplicar el IVA |
-| fk_producto | Producto | Producto Vendido (no nulo)                       |
-| fk_venta    | Venta    | Venta del Producto (no nulo)                     |
-
-### Usuario
-
-| Campo    | Tipo | Descripción            |
-|----------|------|------------------------|
-| id       | UUID | Identificador único    |
-| nombre   | text | Nombre del Usuario     |
-| email    | text | Email del Usuario      |
-| password | text | Contraseña del Usuario |
 
 ## Funciones
 <table>
