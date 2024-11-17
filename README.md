@@ -39,9 +39,11 @@ Funciones Principales:
    
 ### Tecnologías
 
-- Lenguaje de Programación: [Java](https://www.java.com/es/) - Lenguaje predeterminado de Android Studio.
-- Base de Datos: [SQLite3](https://developer.android.com/tools/sqlite3?hl=es-419) - Administrar la base de datos de la aplicación.
-- Material Design: EditText - Android.material:1.0.0, ImageView - CircleImageView:3.1.0
+- Interacción con la Interfaz: [Java](https://www.java.com/es/) y [JQuery](https://jquery.com/) - Agregar comportamiento a los componentes de la UI.
+- Lenguaje del lado del Servidor: [Python](https://www.python.org/) - Crear las operaciones.
+- Web Framework: [Django](https://www.djangoproject.com/) - Facilitar el desarrollo web.
+- Almacenamiento: [LocalStorage](https://developer.mozilla.org/es/docs/Web/API/Window/localStorage) - Almacenar la respuesta del servidor y los resultados del usuario.
+- Visualización de Información: [D3js](https://img.shields.io/badge/Code-D3js-cc6d0e)](https://d3js.org/) - Crear gráficos informátivos (Gráfico de barras/sectores).
   
 ## Dominio
 
@@ -84,9 +86,9 @@ Cualquier usuario que entre en la pagina puede configurar la generación de oper
     <td witdh="100%">
       <h3 align="center">Panel de Configuración</h3>
       <div align="center">
-        <img src="https://github.com/bnphony/Suma-Mental/tree/deployed/static/img/Configuration_Panel.PNG" width="200" alt="Configuration Panel">
+        <img src="https://raw.githubusercontent.com/bnphony/Suma-Mental/deployed/static/img/Configuration_Panel.PNG" width="80%" alt="Configuration Panel">
         <p>
-          - Opciones de Configuración: Tipo de Operación, Modo de Juego, Número de Rondas, Cantidad de Numeros, Cantidad de Dígitos.
+          - Opciones de Configuración: Tipo de Operación, Modo de Juego, Número de Rondas, Cantidad de Números, Cantidad de Dígitos.
         </p>
       </div>
     </td>
@@ -97,7 +99,7 @@ Cualquier usuario que entre en la pagina puede configurar la generación de oper
     <td witdh="100%">
       <h3 align="center">Operación Completa</h3>
       <div align="center">
-        <img src="https://github.com/bnphony/Suma-Mental/tree/deployed/static/img/Configuration_Panel.PNG" width="200" alt="Splash Screen">
+        <img src="https://raw.githubusercontent.com/bnphony/Suma-Mental/deployed/static/img/Operacion_Completa.PNG" width="80%" alt="Splash Screen">
         <p>
           - Todos los números se presenta en pantalla.
         </p>
@@ -110,7 +112,7 @@ Cualquier usuario que entre en la pagina puede configurar la generación de oper
     <td witdh="100%">
       <h3 align="center">Números Secuenciales</h3>
       <div align="center">
-        <img src="https://github.com/bnphony/Suma-Mental/tree/deployed/static/img/Configuration_Panel.PNG" width="200" alt="Splash Screen">
+        <img src="https://raw.githubusercontent.com/bnphony/Suma-Mental/deployed/static/img/Secuencial.PNG" width="80%" alt="Splash Screen">
         <p>
           - Los números son presentados uno por uno secuencialmente.
         </p>
@@ -122,9 +124,9 @@ Cualquier usuario que entre en la pagina puede configurar la generación de oper
     <td witdh="100%">
       <h3 align="center">Calcular Vuelto</h3>
       <div align="center">
-        <img src="https://github.com/bnphony/Suma-Mental/tree/deployed/static/img/Configuration_Panel.PNG" width="200" alt="Splash Screen">
+        <img src="https://raw.githubusercontent.com/bnphony/Suma-Mental/deployed/static/img/Vuelto.PNG" width="80%" alt="Splash Screen">
         <p>
-          - El sistema presenta la cantidad a cobrar el pago del cliente (dólares y centavos). El usuario debe calcular el pago del cliente y la cantidad a devolver.
+          - El sistema presenta la cantidad a cobrar, el pago del cliente (dólares y centavos). El usuario debe calcular el pago del cliente y la cantidad a devolver.
         </p>
       </div>
     </td>
@@ -134,7 +136,7 @@ Cualquier usuario que entre en la pagina puede configurar la generación de oper
     <td witdh="100%">
       <h3 align="center">Ejercicios Resueltos</h3>
       <div align="center">
-        <img src="https://github.com/bnphony/Suma-Mental/tree/deployed/static/img/Configuration_Panel.PNG" width="200" alt="Splash Screen">
+        <img src="https://raw.githubusercontent.com/bnphony/Suma-Mental/deployed/static/img/Resultados_1.PNG" width="80%" alt="Splash Screen">
         <p>
           - Resultados: Ejercicios resultados por el usuario, la respuesta enviada y su valoración.
         </p>
@@ -147,7 +149,7 @@ Cualquier usuario que entre en la pagina puede configurar la generación de oper
     <td witdh="100%">
       <h3 align="center">Gráfico de los Resultados</h3>
       <div align="center">
-        <img src="https://github.com/bnphony/Suma-Mental/tree/deployed/static/img/Configuration_Panel.PNG" width="200" alt="Splash Screen">
+        <img src="https://raw.githubusercontent.com/bnphony/Suma-Mental/deployed/static/img/Resultados_2.PNG" width="80%" alt="Splash Screen">
         <p>
           - Gráfico de Barras: Número de respuestas correctas, incorrectas y sin respuesta.<br/>
           - Gráfico de Sectores (Pastel): Porcentaje de respuestas correctas, incorrectas y sin respuesta.
