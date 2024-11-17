@@ -46,39 +46,56 @@ Funciones Principales:
   
 ## Dominio
 
-Cualquier usuario que entre en la pagina puede configurar la generación de operaciones matematicas(suma/resta) para luego resolverlas mentalmente. Adicionalmente existe la opción de cobrar vuelto. Las 3 funciones principales:
-- Operación Completas: se presentan todos los numeros en pantalla.
-- Numeros Secuenciales: los numeros van apareciendo y desapariendo uno tras de otro.
+Cualquier usuario que entre en la pagina puede configurar la generación de operaciones matemáticas(suma/resta) para luego resolverlas mentalmente. Adicionalmente existe la opción de cobrar vuelto. Las 3 funciones principales:
+- Operación Completas: se presentan todos los números en pantalla.
+- Números Secuenciales: los números van apareciendo y desapareciendo uno tras de otro.
 - Calcular Vuelto: el sistema presenta la cantidad a cobrar y la cantidad que pago el cliente, el usuario debe calcular la cantidad a devolver(vuelto).
 
+### Configuración
 
+| # | Campo             | Opciones                                                         |
+|---|-------------------|------------------------------------------------------------------|
+| 1 | Tipo de Operación | 1) Suma 2) Resta 3) Aleatorio  (mezclar sumas y restas)          |
+| 2 | Modo              | 1) Operación Completa 2) Números Secuenciales 3) Calcular Vuelto |
+| 3 | # Rondas          | Integer (1 - 20)                                                 |
+| 4 | # Números         | Integer (1 - 20)                                                 |
+| 5 | # Dígitos         | 1) Integer (1 - 20) 2) Aleatorio (rango  entre 1 y lo ingresado) |
+
+### Operación Completa
+
+| Campo     | Opciones       |
+|-----------|----------------|
+| Respuesta | Entero/Decimal |
+
+### Números Secuenciales
+
+| Campo     | Opciones       |
+|-----------|----------------|
+| Respuesta | Entero/Decimal |
+
+### Calcular Vuelto
+
+| Campo     | Opciones       |
+|-----------|----------------|
+| Respuesta | Entero/Decimal |
 
 ## Funciones
 <table>
   <tr>
-    <td witdh="50%">
-      <h3 align="center">Splash Screen</h3>
+    <td witdh="100%">
+      <h3 align="center">Panel de Configuración</h3>
       <div align="center">
-        <img src="./img_ventas/splash_screen.png" width="200" alt="Splash Screen">
+        <img src="./static/img/Configuration_Panel.png" width="200" alt="Configuration Panel">
         <p>
-          - Primera pantalla de la aplicación, animación de cierre entre el icono de la aplicación y el nombre de la misma.
+          - Opciones de Configuración: Tipo de Operación, Modo de Juego, Número de Rondas, Cantidad de Numeros, Cantidad de Dígitos.
         </p>
       </div>
     </td>
-    <td witdh="50%">
-      <h3 align="center">Inicio de Sesión</h3>
-      <div align="center">
-        <img src="./img_ventas/login.png" width="200" alt="Splash Screen">
-        <p>
-          - Pantalla de Inicio de Sesión, solo pueden ingresar usuarios que esten registrados en la base de datos.<br/>
-          - Opción de mantener activa la sesión, incluso si se cierra la aplicación.
-        </p>
-      </div>
-    </td>
+    
   </tr>
   
   <tr>
-    <td witdh="50%">
+    <td witdh="100%">
       <h3 align="center">Crear un Usuario</h3>
       <div align="center">
         <img src="./img_ventas/crear_usuario.png" width="200" alt="Splash Screen">
