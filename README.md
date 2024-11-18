@@ -35,7 +35,7 @@ Funciones Principales:
 - Panel del Configuración para personalizar la forma de presentación de las operaciones (suma/resta/combinadas).
 - Calcular el vuelto correspondiente.
 - Valoración de cada respuesta ingresada del usuario.
-- Visualización de los resultados obtenidos (Grafico de Barras/Gráfico de Sectores-Pastel).
+- Visualización de los resultados obtenidos (Gráfico de Barras/Gráfico de Sectores-Pastel).
    
 ### Tecnologías
 
@@ -43,7 +43,7 @@ Funciones Principales:
 - Lenguaje del lado del Servidor: [Python](https://www.python.org/) - Crear las operaciones.
 - Web Framework: [Django](https://www.djangoproject.com/) - Facilitar el desarrollo web.
 - Almacenamiento: [LocalStorage](https://developer.mozilla.org/es/docs/Web/API/Window/localStorage) - Almacenar la respuesta del servidor y los resultados del usuario.
-- Visualización de Información: [D3js](https://img.shields.io/badge/Code-D3js-cc6d0e)](https://d3js.org/) - Crear gráficos informátivos (Gráfico de barras/sectores).
+- Visualización de Información: [D3js](https://d3js.org/) - Crear gráficos informativos (Gráfico de barras/sectores).
   
 ## Dominio
 
